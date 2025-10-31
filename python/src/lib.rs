@@ -1,4 +1,13 @@
+use ::automata::{
+    TransitionSystem,
+    automaton::DFA,
+    core::alphabet::CharAlphabet,
+    ts::{Shrinkable, Sproutable},
+};
 use pyo3::prelude::*;
+
+mod dpa;
+pub use dpa::*;
 
 #[pyclass(name = "DFA")]
 pub struct PyDFA {
@@ -58,16 +67,10 @@ impl PyDFA {
     }
 }
 
-/// Formats the sum of two numbers as string.
-#[pyfunction]
-fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
-    Ok((a + b).to_string())
-}
-
 /// A Python module implemented in Rust.
 #[pymodule]
 fn automata(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
     m.add_class::<PyDFA>()?;
+    m.add_class::<PyDPA>()?;
     Ok(())
 }

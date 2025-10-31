@@ -2,9 +2,9 @@
 # we use the 2024 edition resolver
 resolver = "3"
 
-members = ["crates/*", "bin/*"]
-default-members = ["crates/automata", "crates/automata-*", "crates/hoars", "bin/*"]
-exclude = ["python", "bench"]
+members = ["crates/*", "bin/*", "python"]
+default-members = ["crates/automata", "crates/automata-*", "crates/hoars", "python", "bin/*"]
+exclude = []
 
 [workspace.dependencies]
 tracing = "0.1"
