@@ -351,16 +351,16 @@ mod tests {
     use automata::TransitionSystem;
     use automata::automaton::{MealyMachine, MooreMachine};
     use automata::core::alphabet::CharAlphabet;
-    use rand::Rng;
+    use rand::{Rng, RngExt};
     use tracing::trace;
 
     #[test]
     fn lstar_random_mealy() {
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         for i in 0..200 {
-            let symbols = rng.gen_range(1..5);
-            let max_color = rng.gen_range(1..10);
-            let size = rng.gen_range(1..25);
+            let symbols = rng.random_range(1..5);
+            let max_color = rng.random_range(1..10);
+            let size = rng.random_range(1..25);
 
             let pre_gen = std::time::Instant::now();
             let ts = automata::random::generate_random_mealy(symbols, max_color, size);
@@ -387,11 +387,11 @@ mod tests {
     }
     #[test]
     fn lstar_random_moore() {
-        let mut rng = rand::thread_rng();
+        let mut rng = rand::rng();
         for i in 0..200 {
-            let symbols = rng.gen_range(1..5);
-            let max_color = rng.gen_range(1..10);
-            let size = rng.gen_range(1..25);
+            let symbols = rng.random_range(1..5);
+            let max_color = rng.random_range(1..10);
+            let size = rng.random_range(1..25);
 
             let pre_gen = std::time::Instant::now();
             let ts = automata::random::generate_random_moore(symbols, max_color, size);

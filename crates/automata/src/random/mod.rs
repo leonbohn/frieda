@@ -7,7 +7,8 @@ use automata_core::alphabet::{Alphabet, CharAlphabet};
 use automata_core::word::ReducedOmegaWord;
 use automata_core::{Int, Void, math, upw};
 use math::sample_continuous_bernoulli;
-use rand::{Rng, rngs::ThreadRng, thread_rng};
+use rand::RngExt;
+use rand::{Rng, rng, rngs::ThreadRng};
 use std::cmp::min;
 use tracing::{debug, info};
 
@@ -25,7 +26,7 @@ pub fn generate_random_ts(symbols: usize, probability: f64) -> (DTS, StateIndex<
 
     let mut current = dts.add_state(Void);
     let mut symbol_position = 0;
-    let mut rng = thread_rng();
+    let mut rng = rng();
 
     'outer: loop {
         if current >= (dts.size() as DefaultIdType) {
@@ -44,7 +45,7 @@ pub fn generate_random_ts(symbols: usize, probability: f64) -> (DTS, StateIndex<
         symbol_position += 1;
 
         for target in 0..=current {
-            let value: f64 = rng.gen_range(0.0..=1.0);
+            let value: f64 = rng.random_range(0.0..=1.0);
             if value < probability {
                 dts.add_edge((current, symbol, target));
                 continue 'outer;
@@ -62,7 +63,7 @@ pub fn generate_random_ts(symbols: usize, probability: f64) -> (DTS, StateIndex<
 /// Works as [`generate_random_ts`], but returns a [`DFA`] instead by randomly coloring the states.
 pub fn generate_random_dfa(symbols: usize, probability: f64) -> DFA {
     let (ts, initial) = generate_random_ts(symbols, probability);
-    ts.map_state_colors(|_| thread_rng().gen_bool(probability))
+    ts.map_state_colors(|_| rng().random_bool(probability))
         .with_initial(initial)
         .into_dfa()
 }
@@ -72,7 +73,7 @@ pub fn generate_random_dfa(symbols: usize, probability: f64) -> DFA {
 pub fn generate_random_mealy(symbols: usize, max_color: usize, size: usize) -> MealyMachine {
     let (ts, initial) = generate_random_ts_sized(symbols, size);
     let mut mm = ts
-        .map_edge_colors(|_| thread_rng().gen_range(0..=max_color) as Int)
+        .map_edge_colors(|_| rng().random_range(0..=max_color) as Int)
         .with_initial(initial)
         .into_mealy()
         .minimize()
@@ -86,7 +87,7 @@ pub fn generate_random_mealy(symbols: usize, max_color: usize, size: usize) -> M
 pub fn generate_random_moore(symbols: usize, max_color: usize, size: usize) -> MooreMachine {
     let (ts, initial) = generate_random_ts_sized(symbols, size);
     let mut mm = ts
-        .map_state_colors(|_| thread_rng().gen_range(0..=max_color) as Int)
+        .map_state_colors(|_| rng().random_range(0..=max_color) as Int)
         .with_initial(initial)
         .into_moore()
         .minimize()
@@ -111,10 +112,10 @@ pub fn generate_random_ts_sized(symbols: usize, size: usize) -> (DTS, StateIndex
         dts.add_state(Void);
     }
     // add edges
-    let mut rng = thread_rng();
+    let mut rng = rng();
     for q in dts.state_indices_vec() {
         for sym in alphabet.universe() {
-            let target = rng.gen_range(0..(dts.size() as DefaultIdType));
+            let target = rng.random_range(0..(dts.size() as DefaultIdType));
             dts.add_edge((q, sym, target));
         }
     }
@@ -165,11 +166,11 @@ pub fn draw_priority(num_prios: u8, lambda: f64) -> u8 {
 pub fn generate_random_word(alphabet: &CharAlphabet, min_len: usize, max_len: usize) -> String {
     let charset: Vec<char> = alphabet.universe().collect();
 
-    let mut rng = thread_rng();
-    let length = rng.gen_range(min_len..=max_len);
+    let mut rng = rng();
+    let length = rng.random_range(min_len..=max_len);
     let random_word: String = (0..length)
         .map(|_| {
-            let idx = rng.gen_range(0..charset.len());
+            let idx = rng.random_range(0..charset.len());
             charset[idx] as char
         })
         .collect();
