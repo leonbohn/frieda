@@ -9,11 +9,11 @@ exclude = ["python", "bench"]
 [workspace.dependencies]
 tracing = "0.1"
 tracing-subscriber = "0.3"
-biodivine-lib-bdd = "0.5.23"
-itertools = "0.14.0"
+biodivine-lib-bdd = "0.6"
+itertools = "0.14"
 indexmap = "2.7"
 bimap = "0.6"
-rand = "0.8.5"
+rand = { version = "0.10", features = ["thread_rng"] }
 thiserror = "2.0"
-crossbeam-channel = "0.5.14"
-tabled = { version = "0.16", features = ["ansi"] }
+crossbeam-channel = "0.5"
+tabled = { version = "0.20", features = ["ansi"] }

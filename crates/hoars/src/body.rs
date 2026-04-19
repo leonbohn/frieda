@@ -8,6 +8,7 @@ use crate::{
 };
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[allow(unused)]
 pub struct Alphabet(pub Vec<AtomicProposition>);
 
 #[derive(Clone, Debug)]

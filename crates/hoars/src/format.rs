@@ -55,7 +55,7 @@ impl AcceptanceSignature {
     /// Tries to get the singleton element of the acceptance signature, if it exists.
     /// Returns `None` if the acceptance signature is not a singleton.
     pub fn get_singleton(&self) -> Option<Option<Id>> {
-        if self.len() == 0 {
+        if self.is_empty() {
             Some(None)
         } else if self.len() == 1 {
             Some(Some(self[0]))

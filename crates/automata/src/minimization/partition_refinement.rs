@@ -33,13 +33,13 @@ where
         for sym in mm.symbols() {
             let mut splitter = math::Map::default();
             for q in mm.state_indices() {
-                if let Some(t) = mm.edge(q, sym) {
-                    if set.contains(&t.target()) {
-                        splitter
-                            .entry(t.color())
-                            .or_insert(BTreeSet::default())
-                            .insert(q);
-                    }
+                if let Some(t) = mm.edge(q, sym)
+                    && set.contains(&t.target())
+                {
+                    splitter
+                        .entry(t.color())
+                        .or_insert(BTreeSet::default())
+                        .insert(q);
                 }
             }
 

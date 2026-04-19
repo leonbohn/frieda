@@ -155,14 +155,14 @@ impl HoaRepresentation {
             }
             states.push(state.id());
         }
-        if let Some(num_states) = self.num_states() {
-            if states.len() != num_states {
-                errors.push(format!(
-                    "The number of states is set to {} but there are {} states!",
-                    num_states,
-                    states.len()
-                ));
-            }
+        if let Some(num_states) = self.num_states()
+            && states.len() != num_states
+        {
+            errors.push(format!(
+                "The number of states is set to {} but there are {} states!",
+                num_states,
+                states.len()
+            ));
         }
         if errors.is_empty() {
             Ok(())
@@ -422,10 +422,10 @@ pub fn first_automaton_split_position(input: &str) -> Option<usize> {
 
     'outer: loop {
         if let Some(end) = input.find("--END--") {
-            if let Some(abort) = input.find("--ABORT--") {
-                if abort < end {
-                    continue 'outer;
-                }
+            if let Some(abort) = input.find("--ABORT--")
+                && abort < end
+            {
+                continue 'outer;
             }
             return Some(end + ENDLEN);
         } else {

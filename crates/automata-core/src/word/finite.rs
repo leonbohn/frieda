@@ -2,7 +2,7 @@ use std::collections::VecDeque;
 
 use itertools::Itertools;
 
-use crate::{alphabet::Symbol, show::Show};
+use crate::{alphabet::Symbol, show::Show, word::skip::Rotated};
 
 use super::{Concat, PeriodicOmegaWord, Repeat, Word, omega::OmegaIteration};
 
@@ -76,6 +76,13 @@ pub trait FiniteWord: Word {
         Self: Sized,
     {
         Repeat::new(self, times)
+    }
+
+    fn rotate(self, steps: usize) -> Rotated<Self>
+    where
+        Self: Sized,
+    {
+        Rotated(self, steps)
     }
 
     /// Builds the [`PeriodicOmegaWord`] word that is the omega power of this word, i.e. if

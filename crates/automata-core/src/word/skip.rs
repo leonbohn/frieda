@@ -56,6 +56,7 @@ impl<W: FiniteWord> Word for Rotated<W> {
     }
 }
 
+#[derive(Clone, PartialEq, Debug, Hash, Eq)]
 pub struct RotatedIter<'a, W> {
     rotated: &'a Rotated<W>,
     start: usize,
