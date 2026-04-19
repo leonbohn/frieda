@@ -504,11 +504,9 @@ impl<A: Alphabet, Q: Color, C: Color, const DET: bool> Sproutable
         let (q, a, c, p) = t.into_edge_tuple();
 
         let mut out = None;
-        if DET {
-            if let Some(pos) = self.out_edge_position(q.into_usize(), &a) {
-                trace!("found previously existing edge {pos} in deterministic automaton");
-                out = Some(self.swap_remove_edge(pos).unwrap());
-            }
+        if DET && let Some(pos) = self.out_edge_position(q.into_usize(), &a) {
+            trace!("found previously existing edge {pos} in deterministic automaton");
+            out = Some(self.swap_remove_edge(pos).unwrap());
         }
 
         let mut edge = LinkedListTransitionSystemEdge::new(q, a, c, p);
