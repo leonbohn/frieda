@@ -37,12 +37,19 @@ Additionally, it is planned to have Python bindings at some point in the future,
 ## Quick Start
 
 For working with automata from rust, add FRIEDA to your project by including the relevant crates in your `Cargo.toml`.
+As the crates have not yet been published, you first have to clone the repository to some directory `<DIR>`.
+
+```shell
+git clone https://github.com/leonbohn/frieda.git <DIR>
+```
+
+Subsequently, you add the crates as dependencies to an existing project like so:
 
 ```toml
 [dependencies]
-automata-core = "0.1.0"
-automata-learning = "0.1.0"
-automata = "0.1.0"
+automata-core = { path = "<DIR>/crates/automata-core" }
+automata = { path = "<DIR>/crates/automata"}
+automata-learning = { path = "<DIR>/crates/automata-learning" }
 # Add other crates as needed
 ```
 
