@@ -31,14 +31,12 @@ impl<R: BufRead> Iterator for IntoDeterministicHoaAutomatonStream<R> {
 
     fn next(&mut self) -> Option<Self::Item> {
         loop {
-            match self.base.next() {
-                None => return None,
-                Some(aut) => {
-                    if let Ok(det) = aut.try_into_deterministic() {
-                        return Some(det);
-                    } else {
-                        warn!("Encountered automaton that is not deterministic, skipping...")
-                    }
+            {
+                let aut = self.base.next()?;
+                if let Ok(det) = aut.try_into_deterministic() {
+                    return Some(det);
+                } else {
+                    warn!("Encountered automaton that is not deterministic, skipping...")
                 }
             }
         }

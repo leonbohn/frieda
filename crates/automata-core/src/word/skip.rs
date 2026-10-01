@@ -45,68 +45,6 @@ impl<W: FiniteWord> FiniteWord for Skip<'_, W> {
     }
 }
 
-#[derive(Clone, PartialEq, Debug, Hash, Eq)]
-pub struct Rotated<W>(pub W, pub usize);
-
-impl<W: FiniteWord> Word for Rotated<W> {
-    type Symbol = W::Symbol;
-    const FINITE: bool = true;
-    fn nth(&self, position: usize) -> Option<W::Symbol> {
-        self.0.nth((position + self.1) % self.0.len())
-    }
-}
-
-pub struct RotatedIter<'a, W> {
-    rotated: &'a Rotated<W>,
-    start: usize,
-    position: usize,
-}
-
-impl<'a, W> RotatedIter<'a, W> {
-    pub fn new(rotated: &'a Rotated<W>, start: usize) -> Self {
-        Self {
-            rotated,
-            start,
-            position: 0,
-        }
-    }
-}
-
-impl<W: FiniteWord> Iterator for RotatedIter<'_, W> {
-    type Item = W::Symbol;
-    fn next(&mut self) -> Option<Self::Item> {
-        if self.position < self.rotated.len() {
-            let out = self
-                .rotated
-                .nth((self.start + self.position) % self.rotated.len());
-            assert!(out.is_some());
-            self.position += 1;
-            out
-        } else {
-            None
-        }
-    }
-}
-
-impl<W: FiniteWord> FiniteWord for Rotated<W> {
-    type Symbols<'this>
-        = RotatedIter<'this, W>
-    where
-        Self: 'this;
-
-    fn symbols(&self) -> Self::Symbols<'_> {
-        RotatedIter::new(self, self.1)
-    }
-
-    fn collect_vec(&self) -> Vec<W::Symbol> {
-        self.symbols().collect()
-    }
-
-    fn len(&self) -> usize {
-        self.0.len()
-    }
-}
-
 impl<W: OmegaWord> OmegaWord for Skip<'_, W> {
     type Spoke<'this>
         = Infix<'this, W>

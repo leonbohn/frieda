@@ -183,7 +183,7 @@ where
             }
         }
         assert!(scc.contains(&next));
-        sccs.push(Scc::new(ts, scc.into_iter()));
+        sccs.push(Scc::new(ts, scc));
     }
 
     SccDecomposition::from_sccs(ts, sccs)
@@ -308,7 +308,7 @@ where
                     on_stack.remove(&top);
                     scc.push(top);
                 }
-                let scc = Scc::new(ts, scc.into_iter());
+                let scc = Scc::new(ts, scc);
                 // trace!("identified scc {:?}", scc);
                 sccs.push(scc);
             }

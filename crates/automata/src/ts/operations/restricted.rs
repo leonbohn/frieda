@@ -345,13 +345,9 @@ where
         state: StateIndex<Self>,
         matcher: impl Matcher<EdgeExpression<Self>>,
     ) -> Option<Self::EdgeRef<'_>> {
-        self.ts().edge(state, matcher).and_then(|t| {
-            if t.color() <= self.max && self.min <= t.color() {
-                Some(t)
-            } else {
-                None
-            }
-        })
+        self.ts()
+            .edge(state, matcher)
+            .filter(|t| t.color() <= self.max && self.min <= t.color())
     }
 }
 

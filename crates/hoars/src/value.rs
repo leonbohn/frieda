@@ -6,12 +6,14 @@ use crate::{
 };
 
 #[allow(unused)]
+#[allow(clippy::result_large_err)]
 pub fn header() -> impl Parser<Token, String, Error = Simple<Token>> + Clone {
     select! {
         Token::Header(hdr) => hdr,
     }
 }
 
+#[allow(clippy::result_large_err)]
 pub fn boolean() -> impl Parser<Token, bool, Error = Simple<Token>> + Clone {
     select! {
         Token::Identifier(id) if id == *"t" => true,
@@ -19,22 +21,26 @@ pub fn boolean() -> impl Parser<Token, bool, Error = Simple<Token>> + Clone {
     }
 }
 
+#[allow(clippy::result_large_err)]
 pub fn integer() -> impl Parser<Token, Id, Error = Simple<Token>> + Clone {
     select! {
         Token::Int(n) => n.parse().unwrap(),
     }
 }
 
+#[allow(clippy::result_large_err)]
 pub fn text() -> impl Parser<Token, String, Error = Simple<Token>> + Clone {
     select! {
         Token::Text(txt) => txt,
     }
 }
 
+#[allow(clippy::result_large_err)]
 pub fn identifier() -> impl Parser<Token, String, Error = Simple<Token>> + Clone {
     select! { Token::Identifier(ident) => ident }
 }
 
+#[allow(clippy::result_large_err)]
 pub fn alias_name() -> impl Parser<Token, String, Error = Simple<Token>> + Clone {
     select! { Token::Alias(aname) => aname }
 }
@@ -53,6 +59,7 @@ pub fn acceptance_signature() -> impl Parser<Token, AcceptanceSignature, Error =
         .map(AcceptanceSignature)
 }
 
+#[allow(clippy::result_large_err)]
 pub fn acceptance_info() -> impl Parser<Token, AcceptanceInfo, Error = Simple<Token>> {
     select! {
         Token::Identifier(ident) => AcceptanceInfo::Identifier(ident),

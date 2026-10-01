@@ -111,7 +111,7 @@ impl<RawTy: RawSymbolRepr> PropSymbol<RawTy> {
         BddValuation::new(self.as_bools())
     }
     pub fn from_bdd_valuation(val: BddValuation) -> Self {
-        Self::from_bools(val.vector())
+        Self::from_bools(val.into_vector())
     }
 }
 

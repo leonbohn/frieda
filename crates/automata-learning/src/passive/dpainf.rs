@@ -316,6 +316,7 @@ pub enum DpaInfError<A: Alphabet> {
 }
 
 /// Runs the omega-sprout algorithm on a given conflict relation.
+#[allow(clippy::result_large_err)]
 pub fn dpainf<A, C>(
     conflicts: C,
     additional_constraints: Vec<Box<dyn ConsistencyCheck<A>>>,

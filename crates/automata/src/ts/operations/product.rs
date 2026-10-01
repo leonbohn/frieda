@@ -268,6 +268,7 @@ where
         R::EdgeColor,
     >;
 
+    #[allow(clippy::question_mark)]
     fn next(&mut self) -> Option<Self::Item> {
         if self.position >= self.right_edges.len() {
             self.position = 0;
@@ -370,6 +371,7 @@ where
         R::EdgeColor,
     >;
 
+    #[allow(clippy::question_mark)]
     fn next(&mut self) -> Option<Self::Item> {
         if self.position >= self.right_edges.len() {
             self.position = 0;

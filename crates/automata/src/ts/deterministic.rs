@@ -461,14 +461,14 @@ pub trait Deterministic: TransitionSystem {
                 .chain(self.alphabet().universe().map(|s| format!("{:?}", s))),
         );
         for id in self.state_indices().sorted() {
-            let mut row = vec![format!(
-                "{}",
+            let mut row = vec![
                 state_decorator(
                     id,
                     self.state_color(id)
-                        .expect("Every state should be colored!")
+                        .expect("Every state should be colored!"),
                 )
-            )];
+                .to_string(),
+            ];
             for sym in self.alphabet().universe() {
                 if let Some(edge) = self.edge(id, sym) {
                     row.push(edge_decorator(edge));

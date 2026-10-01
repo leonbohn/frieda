@@ -70,6 +70,7 @@ impl HeaderItem {
     }
 }
 
+#[allow(clippy::result_large_err)]
 fn item() -> impl Parser<Token, HeaderItem, Error = Simple<Token>> {
     let states = just(Token::Header("States".to_string()))
         .ignore_then(value::integer())

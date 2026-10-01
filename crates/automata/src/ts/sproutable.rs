@@ -284,7 +284,7 @@ pub trait Sproutable: TransitionSystem {
         }
         let mut seen = BitSet::with_capacity(self.alphabet().size());
         for state in self.state_indices().collect_vec() {
-            seen.clear();
+            seen.make_empty();
             for edge in self.edges_from(state).unwrap() {
                 seen.insert(self.alphabet().expression_to_index(edge.expression()));
             }

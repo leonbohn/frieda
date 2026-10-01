@@ -51,7 +51,7 @@ where
     type Output = bool;
     type Observer = run::EdgeColorLimit<T>;
     fn evaluate(&self, observed: <Self::Observer as run::Observer<T>>::Current) -> Self::Output {
-        observed % 2 == 0
+        observed.is_multiple_of(2)
     }
 }
 

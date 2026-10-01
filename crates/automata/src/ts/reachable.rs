@@ -140,11 +140,9 @@ where
                 }
                 return Some(edge);
             }
-            if let Some(q) = self.queue.pop_front() {
-                self.it = self.ts.edges_from(q).expect("state does not exist");
-            } else {
-                return None;
-            }
+
+            let q = self.queue.pop_front()?;
+            self.it = self.ts.edges_from(q).expect("state does not exist");
         }
     }
 }

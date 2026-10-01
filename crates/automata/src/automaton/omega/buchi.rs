@@ -70,13 +70,13 @@ where
                 // let InfinityColors(colors) = self
                 //     .induced(&full_word, self.initial())
                 //     .expect("word is valid");
-                if let Some(infset) = self.visited_edge_colors_from(good_scc.first(), &full_word) {
-                    if infset.iter().any(|b| *b) {
-                        let spoke = self
-                            .word_from_to(self.initial, good_scc.first())
-                            .expect("We know this is reachable!");
-                        return Some(ReducedOmegaWord::ultimately_periodic(spoke, full_word));
-                    }
+                if let Some(infset) = self.visited_edge_colors_from(good_scc.first(), &full_word)
+                    && infset.iter().any(|b| *b)
+                {
+                    let spoke = self
+                        .word_from_to(self.initial, good_scc.first())
+                        .expect("We know this is reachable!");
+                    return Some(ReducedOmegaWord::ultimately_periodic(spoke, full_word));
                 }
                 // if colors.contains(&true) {
                 //     let base = self

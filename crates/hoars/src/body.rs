@@ -8,6 +8,7 @@ use crate::{
 };
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[allow(unused)]
 pub struct Alphabet(pub Vec<AtomicProposition>);
 
 #[derive(Clone, Debug)]
@@ -165,6 +166,7 @@ fn implicit_edge() -> impl Parser<Token, ImplicitEdge, Error = Simple<Token>> {
         .map(|(label, acceptance_signature)| ImplicitEdge(label, acceptance_signature))
 }
 
+#[allow(clippy::result_large_err)]
 pub fn state() -> impl Parser<Token, State, Error = Simple<Token>> {
     just(Token::Header("State".to_string()))
         .ignore_then(

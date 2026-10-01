@@ -155,7 +155,7 @@ fn deduplicate_inplace<S: Eq>(input: &mut Vec<S>) {
     for i in 1..=(input.len() / 2) {
         // for a word w of length n, if th first n-i symbols of w are equal to the
         // last n-i symbols of w, then w is periodic with period i
-        if input.len() % i == 0 && input[..input.len() - i] == input[i..] {
+        if input.len().is_multiple_of(i) && input[..input.len() - i] == input[i..] {
             input.truncate(i);
             return;
         }
