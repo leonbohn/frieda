@@ -10,8 +10,8 @@ mod value;
 
 pub mod label;
 pub use label::{
-    AbstractLabelExpression, HoaAlphabet, HoaExpression, HoaRepr, HoaSymbol, Label,
-    LabelExpression, MAX_APS, build_vars,
+    build_vars, AbstractLabelExpression, HoaAlphabet, HoaExpression, HoaRepr, HoaSymbol, Label,
+    LabelExpression, MAX_APS,
 };
 
 use tracing::warn;
@@ -24,7 +24,7 @@ use ariadne::{Color, Fmt, ReportKind, Source};
 use chumsky::prelude::*;
 pub use format::*;
 
-use chumsky::{Parser, prelude::Simple};
+use chumsky::{prelude::Simple, Parser};
 pub use format::{
     AcceptanceCondition, AcceptanceInfo, AcceptanceName, AcceptanceSignature, AliasName, Property,
 };
@@ -187,7 +187,7 @@ impl HoaRepresentation {
         })
     }
 
-    /// Returns the number of edges in the automaton.
+    /// Returns the start state conjunction.
     pub fn start(&self) -> Vec<&StateConjunction> {
         debug_assert!(
             self.header()
@@ -453,11 +453,11 @@ mod tests {
     use tracing::error;
 
     use crate::{
-        AcceptanceAtom, AcceptanceCondition, AcceptanceName, AcceptanceSignature, Body, HeaderItem,
-        HoaRepresentation, StateConjunction,
         body::{Edge, State},
         header::Header,
         label::AnonymousAbstract,
+        AcceptanceAtom, AcceptanceCondition, AcceptanceName, AcceptanceSignature, Body, HeaderItem,
+        HoaRepresentation, StateConjunction,
     };
 
     #[test]
@@ -491,7 +491,7 @@ mod tests {
         let hoa_aut = HoaRepresentation::try_from(contents);
 
         if let Err(err) = hoa_aut {
-            error!("Encountered paring error\n{}", err);
+            error!("Encountered parsing error\n{}", err);
             return;
         }
 
