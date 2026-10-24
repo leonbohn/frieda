@@ -304,9 +304,7 @@ mod tests {
         let cong = sample.infer_prefix_congruence().unwrap();
         let split = sample.split(&cong);
 
-        for w in ["b"] {
-            assert!(split.get(0).unwrap().contains(&upw!(w)))
-        }
+        assert!(split.get(0).unwrap().contains(&upw!("b")));
     }
 
     #[test]

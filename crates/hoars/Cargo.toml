@@ -3,14 +3,14 @@ name = "hoars"
 version = "0.2.1"
 
 description = "A library for dealing with the HOA (Hanoi Omega Automata) file format."
-repository = "https://github.com/leonbohn/automata/tree/main/hoars"
+repository.workspace = true
 readme = "README.md"
 keywords = ["omega-automata", "hoa", "automata"]
 categories = ["encoding", "parser-implementations"]
-license = "MIT or Apache-2.0"
-edition = "2024"
-homepage = "https://github.com/leonbohn/automata"
-authors = ["León Bohn <bohn@lics.rwth-aachen.de>"]
+license.workspace = true
+edition.workspace = true
+homepage.workspace = true
+authors.workspace = true
 
 exclude = ["hoa/*", "doc/hoaf.pdf"]
 
@@ -19,7 +19,6 @@ independent = true
 
 [dependencies]
 tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
 biodivine-lib-bdd = { workspace = true }
 itertools = { workspace = true }
 

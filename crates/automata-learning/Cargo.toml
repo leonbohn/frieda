@@ -1,11 +1,14 @@
 [package]
 name = "automata-learning"
 version = "0.1.0"
-edition = "2024"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+description = "Passive and active learning algorithms for automata (RPNI-style sprout, DPAInf, L*)."
 
 [dependencies]
 tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
 itertools = { workspace = true }
 bimap = { workspace = true }
 thiserror = { workspace = true }
@@ -21,16 +24,5 @@ fixedbitset = "0.5.7"
 
 automata = { path = "../automata", features = ["hoa", "render", "graphviz"] }
 
-[features]
-default = []
-
 [dev-dependencies]
 test-log = { version = "0.2.17", features = ["trace"] }
-# [[bin]]
-# name = "coal"
-# path = "src/bin/coal.rs"
-# required-features = ["coal"]
-
-# [[bench]]
-# name = "forc_inference"
-# harness = false

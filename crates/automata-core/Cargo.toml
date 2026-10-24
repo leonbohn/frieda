@@ -3,7 +3,7 @@ name = "automata-core"
 version = "0.1.0"
 readme = "README.md"
 description = "A library for transition systems and automata over (in)finite words."
-repository = "https://github.com/leonbohn/automata"
+repository.workspace = true
 keywords = [
     "transition-system",
     "language",
@@ -12,14 +12,13 @@ keywords = [
     "omega-automata",
 ]
 categories = ["mathematics", "science"]
-license = "MIT or Apache-2.0"
-edition = "2024"
-homepage = "https://github.com/leonbohn/automata"
-authors = ["León Bohn <bohn@lics.rwth-aachen.de>"]
+license.workspace = true
+edition.workspace = true
+homepage.workspace = true
+authors.workspace = true
 
 [dependencies]
 tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
 biodivine-lib-bdd = { workspace = true }
 itertools = { workspace = true }
 indexmap = { workspace = true }
@@ -28,7 +27,6 @@ rand = { workspace = true }
 tabled = { workspace = true }
 thiserror = { workspace = true }
 
-hoars = { version = "0.2.0", optional = true, path = "../hoars" }
 
 
 [features]
