@@ -91,7 +91,3 @@ Features: `default = ["hoa", "random", "render"]`, plus `graphviz`, `petgraph`, 
 See `PLAN.md` for the full list. The ones most likely to bite when editing:
 - `Automaton` is parameterized by seven generic arguments; type errors can be long.
 - `python/` is not built by CI and has drifted from the workspace.
-
-## Local environment notes
-
-- If `/sam` is full or `sccache` fails with a missing temp dir, build with `TMPDIR=/tmp RUSTC_WRAPPER= CARGO_TARGET_DIR=$HOME/.cache/frieda-target cargo ...`.
