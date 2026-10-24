@@ -57,6 +57,8 @@ Problems found:
 ### Phase 1: split into focused repositories and merge the core
 Decision (recommended): **the `automata` crate gets its own repository, with `automata-core` merged into it.** The crate name `automata` is already owned on crates.io, so the new release is `automata 0.1.0` (a breaking change relative to 0.0.4, which is fine for 0.x).
 
+**Status:** the `automata` + `automata-core` extraction is done locally in `/home/lonne/Rust/automata-extract` (history preserved, 237 commits, `automata-core` merged as `src/core/`, all tests unchanged, not yet pushed). Its remaining follow-ups (flatten `core`, release `hoars`, switch `automata-learning` and the binaries over, delete `crates/automata*` here) are tracked in that repo's `PLAN.md`. `hoars` has not been extracted yet.
+
 Target repositories:
 
 | Repo | Contents | Published as |
