@@ -138,7 +138,7 @@ checksum = "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53"
 [[package]]
 name = "automata"
 version = "0.1.0"
-source = "git+https://github.com/leonbohn/automata#303cfe4e665eb4e07b0e26332f6fef5563546492"
+source = "git+https://github.com/leonbohn/automata#d698f76e59beba6d29cd9c1cbf039f51bccf158d"
 dependencies = [
  "base64",
  "bimap",
@@ -163,7 +163,7 @@ dependencies = [
 [[package]]
 name = "automata-learning"
 version = "0.1.0"
-source = "git+https://github.com/leonbohn/automata-learning#26d822bf26c4a8112221f345b63b796e760733fb"
+source = "git+https://github.com/leonbohn/automata-learning#69d3bfab3938834a86425ad2c7631f2a62b04ae5"
 dependencies = [
  "alea",
  "automata",
