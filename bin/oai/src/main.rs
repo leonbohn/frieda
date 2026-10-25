@@ -3,8 +3,8 @@ use automata::hoa::WriteHoa;
 use tracing::{debug, info, trace};
 use tracing_subscriber::{filter, prelude::*};
 
+use automata::alphabet::{CharAlphabet, PropAlphabet};
 use automata::automaton::DeterministicOmegaAutomaton;
-use automata::core::alphabet::{CharAlphabet, PropAlphabet};
 use clap::{Arg, ArgMatches, Command};
 
 fn cli() -> clap::Command {
@@ -80,7 +80,13 @@ pub fn main() {
                     start.elapsed().as_micros()
                 );
 
-                print!("{}", reconverted.into_dpa().to_hoa());
+                match reconverted.into_dpa() {
+                    Ok(dpa) => print!("{}", dpa.to_hoa()),
+                    Err(error) => {
+                        eprintln!("error: {error}");
+                        std::process::exit(1);
+                    }
+                }
             }
         }
         _ => unreachable!(),

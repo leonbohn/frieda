@@ -4,13 +4,13 @@ use rayon::prelude::*;
 use std::{collections::HashMap, env, fs, path::PathBuf, time::Duration};
 use tracing_subscriber::{Layer, layer::SubscriberExt, util::SubscriberInitExt};
 
+use automata::alphabet::{Alphabet, CharAlphabet};
 use automata::automaton::{BuchiCondition, DBA, DPA, MinEvenParityCondition, Semantics};
-use automata::core::alphabet::{Alphabet, CharAlphabet};
-use automata::core::word::{OmegaWord, ReducedOmegaWord};
-use automata::core::{Color, Void, math, upw};
 use automata::representation::CollectTs;
 use automata::ts::Deterministic;
 use automata::ts::run::InfiniteObserver;
+use automata::word::{OmegaWord, ReducedOmegaWord};
+use automata::{Color, Void, math, upw};
 use automata::{
     DTS, TransitionSystem,
     automaton::InfiniteWordAutomaton,

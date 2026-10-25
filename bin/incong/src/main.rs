@@ -1,5 +1,5 @@
-use automata::core::alphabet::{FreeMonoid, Symbol};
-use automata::core::word::{PeriodicOmegaWord, Rotate};
+use automata::alphabet::{FreeMonoid, Symbol};
+use automata::word::{PeriodicOmegaWord, Rotate};
 
 fn compute<S: Symbol>(symbols: Vec<S>, max_length: usize) -> (Vec<PeriodicOmegaWord<S>>, usize) {
     let mut unique = Vec::new();
