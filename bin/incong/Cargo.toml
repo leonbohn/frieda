@@ -10,4 +10,4 @@ tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 itertools = { workspace = true }
 
-automata = { path = "../../crates/automata" }
+automata = { workspace = true }

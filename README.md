@@ -24,37 +24,25 @@ Representation of standard acceptance conditions and automata types based on the
 - **Hanoi Omega-Automata (HOA) format**: Support for parsing automata that are given in [HOA](https://adl.github.io/hoaf/), and for outputting automata in HOA.
 - **Python Bindings**: Use *FRIEDA*'s functionality from Python (hopefully coming at some point)
 
-This repository consists of several interconnected crates, which we list out below.
-Unsurprisingly, they can be found in the `crates` subdirectory.
+The functionality lives in several repositories:
 
-- `automata-core`: Core data structures and traits for working with transition systems and automata
-- `automata`: Main package with high-level automata functionality. This crate also defines common acceptance conditions and provides structs combining transition systems with them.
-- `automata-learning`: Implementations of automata learning algorithms, this includes active and passive algorithms.
-- `hoars`: Support for the [HOA format](https://adl.github.io/hoaf/) through which omega-automata can be represented.
+- [`automata`](https://github.com/leonbohn/automata): transition systems, automata, acceptance conditions, constructions, minimization, HOA bridge and rendering.
+- [`hoars`](https://github.com/leonbohn/hoars) ([crates.io](https://crates.io/crates/hoars)): parser and printer for the [HOA format](https://adl.github.io/hoaf/).
+- [`automata-learning`](https://github.com/leonbohn/automata-learning): active and passive automata learning algorithms.
 
-Additionally, it is planned to have Python bindings at some point in the future, they will be stored in the `python` subdirectory.
+This repository (`frieda`) is the umbrella for experiments and tools built on top of them: command line tools in `bin/` and Python bindings in `python/` (work in progress).
 
 ## Quick Start
 
-For working with automata from rust, add FRIEDA to your project by including the relevant crates in your `Cargo.toml`.
-As the crates have not yet been published, you first have to clone the repository to some directory `<DIR>`.
-
-```shell
-git clone https://github.com/leonbohn/frieda.git <DIR>
-```
-
-Subsequently, you add the crates as dependencies to an existing project like so:
+The libraries are not yet published on crates.io (except `hoars`), so depend on them through git:
 
 ```toml
 [dependencies]
-automata-core = { path = "<DIR>/crates/automata-core" }
-automata = { path = "<DIR>/crates/automata"}
-automata-learning = { path = "<DIR>/crates/automata-learning" }
-# Add other crates as needed
+automata = { git = "https://github.com/leonbohn/automata" }
+automata-learning = { git = "https://github.com/leonbohn/automata-learning" }
 ```
 
-To see how you can quickly start working with the libraries, check out the crate specific documentations.
-You can find them by either navigating to the appropriate subdirectories or by clicking on the appropriate link: [automata](crates/automata/README.md), [automata-learning](crates/automata-learning/README.md)
+See the READMEs of the respective repositories for how to get started.
 
 ## Command Line Tools
 
@@ -69,17 +57,16 @@ This command uses the locked version of the dependencies as that is guaranteed t
 ## Examples
 
 As typical for rust repositories, code examples are organised in a `tests` module that is scattered throughout the source code.
-Also check out the `examples` directory for example files such as automata in `hoa` format.
 
 ## Documentation
 
-Each crate has its own documentation, which per default is available for the latest released version on [docs.rs](docs.rs).
+Each library has its own documentation (see the repositories above), which per default is available for the latest released version on [docs.rs](docs.rs).
 If you would like to locally document the current version, this can be done through invoking [`cargo doc`](https://doc.rust-lang.org/cargo/commands/cargo-doc.html).
 For most use cases, it should be sufficient to simply execute
 ```shell
 cargo doc --locked --workspace --no-deps --open
 ```
-which will document the full workspace, not document any dependencies and subsequently open the documentation in your default browser.
+which will document the binaries in this workspace, not document any dependencies and subsequently open the documentation in your default browser.
 
 ## Contributing
 
@@ -94,11 +81,11 @@ Before such a request can be merged, it is verified that the resulting code buil
 This is automatically done whenever a pull request is opened, and merging can only occur once all those tests have succeeded.
 
 As running the tests in the cloud can take a while, it may be good to check adherence to the standards locally before even opening a pull request.
-To do this, you can call `./check` (you may have to make it executable by calling `chmod +x check` before) or alternatively execute the commands it contains manually.
+To do this, you can call `./scripts/check` or alternatively execute the commands it contains manually.
 
 ### License
 
-This project is licensed under the MIT or Apache-2.0.
+This project is licensed under the MIT license.
 To be completely honest, I have only very rudimentary understanding of licensing.
 There exists a `LICENSE.md` file, but that is mostly for good measure.
 In principle, you can do whatever with the code, but it would be nice if you mention this repository when you use it.

@@ -10,4 +10,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = "0.21.1"
-automata = { path = "../" }
+automata = { git = "https://github.com/leonbohn/automata" }
