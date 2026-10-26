@@ -24,7 +24,7 @@ Each of those has its own `CLAUDE.md` and `PLAN.md`. Do not re-add library code 
 | `python/` | `automata_python` | PyO3/maturin bindings; only a `DFA` wrapper; excluded from the workspace and not built by CI. |
 | `assets/` | | Logo for the README. |
 
-The workspace (`Cargo.toml`) has members `bin/*`. `automata` and `automata-learning` are workspace dependencies on the `main` branch of their GitHub repositories (git dependencies, until they are published). A breaking change on their `main` can break the binaries; run `cargo update -p automata` deliberately and pin a `rev` if needed. `Cargo.lock` is committed.
+The workspace (`Cargo.toml`) has members `bin/*`. `automata` and `automata-learning` are workspace dependencies on the released `0.1` versions from crates.io. `Cargo.lock` is committed.
 
 ## Commands
 
@@ -40,8 +40,9 @@ cargo run -p oai -- todpa < file.hoa
 When developing a library change together with a binary, use a local override instead of editing the manifests, e.g. in `.cargo/config.toml`:
 
 ```toml
-[patch."https://github.com/leonbohn/automata"]
+[patch.crates-io]
 automata = { path = "/home/lonne/Rust/automata" }
+automata-learning = { path = "/sam/Rust/automata-learning" }
 ```
 
 ## Conventions

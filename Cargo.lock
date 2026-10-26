@@ -138,7 +138,8 @@ checksum = "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53"
 [[package]]
 name = "automata"
 version = "0.1.0"
-source = "git+https://github.com/leonbohn/automata#d698f76e59beba6d29cd9c1cbf039f51bccf158d"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2e802af85dd944e888e0275425713569f303d849e9cede031f81c955bb6324a8"
 dependencies = [
  "base64",
  "bimap",
@@ -163,7 +164,8 @@ dependencies = [
 [[package]]
 name = "automata-learning"
 version = "0.1.0"
-source = "git+https://github.com/leonbohn/automata-learning#69d3bfab3938834a86425ad2c7631f2a62b04ae5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7cc06c04fdcf1bb245b2b70a086f203ef5e03e4facafdc56a3bfb3b5f009433c"
 dependencies = [
  "alea",
  "automata",

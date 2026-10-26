@@ -17,6 +17,5 @@ tracing = "0.1"
 tracing-subscriber = "0.3"
 itertools = "0.15"
 
-# TODO: depend on released versions once automata (and automata-learning) are published
-automata = { git = "https://github.com/leonbohn/automata" }
-automata-learning = { git = "https://github.com/leonbohn/automata-learning" }
+automata = "0.1"
+automata-learning = "0.1"
